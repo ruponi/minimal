@@ -2,20 +2,22 @@
 
 import UIKit
 
-// test arrays
-var array:[Double]  = [4,5,3]
+// test arrays===============================================
+var array:[Double]  = [4,5,3,2,8]
 var array2:[Double] = [4,1,3,2,1,23,24,26,33,34,23,34]
 var array3:[Double]?
+var currentTime:DispatchTime?
 
 
+//=============
+//function return TRUE if counts of local minima more then count of local maximea
+//=============
 //array is [Double] and contains 3 and more elements
 //return  (false) if array not defined
-// return TRUE if quantity of local minima is more than the quantity of local maxima
-// else return FALSE
 public func minmax(data:[Double]?)->(Bool){
-     var nMax=0
-     var nMin=0
-    if let tmparr=data {
+var nMax=0
+var nMin=0
+if let tmparr=data {
      localMaximas(a: tmparr,low: 0,high: tmparr.count-1,maxNumber: &nMax)
      localMinimas(a: tmparr,low: 0,high: tmparr.count-1,minNumber: &nMin)
     print("Number Mins:\(nMin)")
@@ -26,8 +28,8 @@ public func minmax(data:[Double]?)->(Bool){
     }
 }
 
-
- func localMinimas(a:[Double],low:NSInteger, high:NSInteger, minNumber: inout NSInteger)->NSInteger {
+//Count of local minima
+func localMinimas(a:[Double],low:NSInteger, high:NSInteger, minNumber: inout NSInteger)->NSInteger {
     let mid:NSInteger = (low+high)/2;
     if(high-low > 3) {     // more than 4 items in currently  divided array
         if(isMinima(a: a,mid: mid)) {
@@ -48,7 +50,8 @@ public func minmax(data:[Double]?)->(Bool){
     return 0;
 }
 
- func localMaximas(a:[Double],low:NSInteger, high:NSInteger, maxNumber: inout NSInteger)->NSInteger {
+//Count of local maxima
+func localMaximas(a:[Double],low:NSInteger, high:NSInteger, maxNumber: inout NSInteger)->NSInteger {
     let mid:NSInteger = (low+high)/2;
     if(high-low > 3) {     // more than 4 items in currently  divided array
         if(isMaxima(a: a,mid: mid)) {
@@ -68,7 +71,9 @@ public func minmax(data:[Double]?)->(Bool){
     return 0;
 }
 
- func maxof(a:[Double], i:NSInteger, j:NSInteger)->NSInteger {
+
+
+func maxof(a:[Double], i:NSInteger, j:NSInteger)->NSInteger {
     if(a[i] < a[j]) {
         return j
     }
@@ -142,8 +147,12 @@ public func minmax(data:[Double]?)->(Bool){
 }
 
 
+//Test Area================
+
+print ("Result of array 1: \(String(describing: array)) \(minmax(data: array))")
 
 print ("Result of array 2: \(String(describing: array2)) \(minmax(data: array2))")
+
 
 //result============================================
 //Number Mins:3
